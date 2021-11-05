@@ -4,7 +4,6 @@ import scipy.fftpack as fft
 from scipy.signal import get_window
 import time
 from time import sleep
-from matplotlib import pylab
 import warnings
 import RPi.GPIO as GPIO
 import Adafruit_GPIO.SPI as SPI
@@ -50,7 +49,7 @@ def repeat():
     # record sound
     print('Start Speaking')
 
-    a = sd.rec(int(d*fs), samplerate = fs,channels = 2)
+    a = sd.rec(int(d*fs), samplerate = fs,channels = 1)
     sd.wait()
     
     
@@ -201,27 +200,32 @@ def repeat():
 
     if 0<cepstral_stddev<=0.0169:
         print("Neutral")
-        draw.text((x,top), "neutral",font=font,fill=255)
+        display.setRotation(2)
+        draw.text((x,top), "(-_-;)・・・",font=font,fill=255)
         disp.image(image)
         disp.display()
     elif 0.017<cepstral_stddev<=0.02199:
         print("Melancholy")
-        draw.text((x,top), "melancholy",font=font,fill=255)
+        display.setRotation(2)
+        draw.text((x,top), "(╯︵╰,)",font=font,fill=255)
         disp.image(image)
         disp.display()
     elif 0.022<cepstral_stddev<=0.0289:
         print("Delight")
-        draw.text((x,top), "delight",font=font,fill=255)
+        display.setRotation(2)
+        draw.text((x,top), "⊂(￣▽￣)⊃",font=font,fill=255)
         disp.image(image)
         disp.display()
     elif 0.029<cepstral_stddev<=0.03999:
         print("Serious")
-        draw.text((x,top), "serious",font=font,fill=255)
+        display.setRotation(2)
+        draw.text((x,top), "┐(￣ヘ￣)┌",font=font,fill=255)
         disp.image(image)
         disp.display()
     elif 0.04<cepstral_stddev<=1:
         print("Unstable Emotion!")
-        draw.text((x,top), "unstable",font=font,fill=255)
+        display.setRotation(2)
+        draw.text((x,top), "＼(〇_ｏ)／",font=font,fill=255)
         disp.image(image)
         disp.display()
 
